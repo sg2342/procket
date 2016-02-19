@@ -57,10 +57,11 @@ name(Template) ->
     template(Template, ?ALPHANUM).
 
 template(Name, Chars) ->
+    random:seed(now()),
     template(lists:reverse(Name), [], Chars).
 template([$X|Rest], Acc, Chars) ->
     template(Rest,
-        [lists:nth(crypto:rand_uniform(1, length(Chars)+1), Chars)|Acc],
+        [lists:nth(random:uniform(length(Chars)), Chars)|Acc],
         Chars);
 template(Name, Rand, _) when length(Rand) >= 6 ->
     lists:reverse(Name) ++ Rand.
