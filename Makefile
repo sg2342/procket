@@ -33,7 +33,7 @@ setuid: all
 
 $(DEPSOLVER_PLT):
 	@dialyzer --output_plt $(DEPSOLVER_PLT) --build_plt \
-		--apps erts kernel stdlib crypto
+		--apps erts kernel stdlib
 
 dialyzer: $(DEPSOLVER_PLT)
 	@dialyzer --plt $(DEPSOLVER_PLT) -Wrace_conditions --src src
